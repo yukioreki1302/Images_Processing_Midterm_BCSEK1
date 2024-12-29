@@ -72,7 +72,8 @@ Xem kết quả:
 
 Sau khi xử lý xong, bạn có thể tải về ảnh đã xử lý bằng cách nhấn vào nút "Tải về ảnh đã xử lý".
 
-![image](https://github.com/user-attachments/assets/b6cf8a4a-6e73-4d58-bfe8-b71b1fe3ef4d)
+![image](https://github.com/user-attachments/assets/7c66aa32-c322-4c5b-a925-abcb3cf502fa)
+
 
 Ấn nút đỏ OpenCV để chuyển giữa dùng Open CV và thuật toán sử dụng toán học 
 

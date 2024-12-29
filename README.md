@@ -38,3 +38,26 @@
    ```bash
    https://github.com/yukioreki1302/Images_Processing_Midterm_BCSEK1.git
    cd image_processing_app
+2. **Cài đặt các thư viện yêu cầu: Tạo môi trường ảo (khuyến khích) và cài đặt các thư viện cần thiết**:
+   pip install -r requirements.txt
+3. **Chạy ứng dụng Streamlit**:
+   streamlit run app.py
+
+   **Hướng dẫn sử dụng**
+Tải lên ảnh:
+
+Truy cập vào giao diện của ứng dụng và tải lên một bức ảnh (JPEG, PNG hoặc JPG).
+
+Chọn phương pháp xử lý:
+
+Chọn danh mục phương pháp xử lý ảnh từ thanh bên (ví dụ: "Làm Mượt", "Khôi Phục", "Phân Tách", v.v.).
+Chọn phương pháp cụ thể từ các lựa chọn trong mỗi danh mục.
+
+Tùy chọn sử dụng OpenCV:
+
+Bạn có thể chọn sử dụng OpenCV để xử lý ảnh tự động, hoặc chọn phương pháp thủ công để thực hiện các bước xử lý thủ công.
+
+Xem kết quả:
+
+Ảnh đã xử lý sẽ được hiển thị trực tiếp trên trang.
+Sau khi xử lý xong, bạn có thể tải về ảnh đã xử lý bằng cách nhấn vào nút "Tải về ảnh đã xử lý".

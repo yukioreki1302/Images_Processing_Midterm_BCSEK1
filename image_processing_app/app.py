@@ -1,5 +1,4 @@
 import streamlit as st
-import cv2
 import numpy as np
 from io import BytesIO
 from utils.opencv_methods import *

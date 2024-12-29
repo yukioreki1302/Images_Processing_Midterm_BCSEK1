@@ -22,9 +22,3 @@
 pip install -r requirements.txt
 
 
-Chạy Ứng Dụng
-Sau khi cài đặt xong các thư viện, bạn có thể chạy ứng dụng bằng lệnh sau:
-
-bash
-Sao chép mã
-streamlit run app.py

@@ -136,7 +136,7 @@ def color_transform(image):
 
 def run_length_coding(image, resize_dim=(100, 100)):
     """
-    Mã hóa Run Length Coding (RLC) với ảnh đầu vào.
+    Mã hóa Run Length Coding (RLC) sử dụng OpenCV.
     
     Parameters:
         image (numpy.ndarray): Ảnh đầu vào.
@@ -145,26 +145,34 @@ def run_length_coding(image, resize_dim=(100, 100)):
     Returns:
         list: Danh sách các cặp (giá trị pixel, số lần lặp lại).
     """
-    # Bước 1: Resize ảnh
-    resized_image = cv2.resize(image, resize_dim, interpolation=cv2.INTER_AREA)
-    
-    # Bước 2: Chuyển ảnh sang grayscale
-    gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
-    
-    # Bước 3: Làm phẳng mảng 2D thành 1D
-    flat = gray.flatten()
-    
-    # Bước 4: Mã hóa Run Length Coding
-    rle = []
-    prev = flat[0]
-    count = 1
-    for i in range(1, len(flat)):
-        if flat[i] == prev:
-            count += 1
-        else:
-            rle.append((prev, count))
-            prev = flat[i]
-            count = 1
-    rle.append((prev, count))  # Thêm cặp cuối cùng
-    
-    return rle
+    try:
+        # Kiểm tra ảnh đầu vào
+        if image is None or len(image.shape) < 2:
+            raise ValueError("Ảnh đầu vào không hợp lệ hoặc rỗng.")
+
+        # Resize ảnh
+        resized_image = cv2.resize(image, resize_dim, interpolation=cv2.INTER_AREA)
+        
+        # Chuyển ảnh sang grayscale
+        gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
+        
+        # Làm phẳng mảng 2D thành 1D
+        flat = gray.flatten()
+        
+        # Mã hóa Run Length Coding
+        rle = []
+        prev = flat[0]
+        count = 1
+        for i in range(1, len(flat)):
+            if flat[i] == prev:
+                count += 1
+            else:
+                rle.append((prev, count))
+                prev = flat[i]
+                count = 1
+        rle.append((prev, count))  # Thêm cặp cuối cùng
+        
+        return rle
+    except Exception as e:
+        print("Error processing the image:", str(e))
+        return None

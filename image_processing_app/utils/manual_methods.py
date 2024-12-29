@@ -318,32 +318,42 @@ def run_length_coding_manual(image, resize_dim=(100, 100)):
     Returns:
         list: Danh sách các cặp (giá trị pixel, số lần lặp lại).
     """
-    # Bước 1: Resize ảnh thủ công
-    height, width = image.shape[:2]
-    resized_image = np.zeros((resize_dim[1], resize_dim[0], 3), dtype=np.uint8)
-    for y in range(resize_dim[1]):
-        for x in range(resize_dim[0]):
-            src_x = int(x * width / resize_dim[0])
-            src_y = int(y * height / resize_dim[1])
-            resized_image[y, x] = image[src_y, src_x, :3]
-    
-    # Bước 2: Chuyển ảnh RGB sang grayscale thủ công
-    gray = np.dot(resized_image[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
-    
-    # Bước 3: Làm phẳng mảng 2D thành 1D
-    flat = gray.flatten()
-    
-    # Bước 4: Mã hóa Run Length Coding
-    rle = []
-    prev = flat[0]
-    count = 1
-    for i in range(1, len(flat)):
-        if flat[i] == prev:
-            count += 1
-        else:
-            rle.append((prev, count))
-            prev = flat[i]
-            count = 1
-    rle.append((prev, count))  # Thêm cặp cuối cùng
-    
-    return rle
+    try:
+        # Kiểm tra ảnh đầu vào
+        if image is None or len(image.shape) < 3 or image.shape[2] < 3:
+            raise ValueError("Ảnh đầu vào không hợp lệ hoặc không phải RGB.")
+        
+        # Lấy kích thước gốc
+        height, width = image.shape[:2]
+
+        # Resize ảnh thủ công
+        resized_image = np.zeros((resize_dim[1], resize_dim[0], 3), dtype=np.uint8)
+        for y in range(resize_dim[1]):
+            for x in range(resize_dim[0]):
+                src_x = int(x * width / resize_dim[0])
+                src_y = int(y * height / resize_dim[1])
+                resized_image[y, x] = image[src_y, src_x, :3]
+        
+        # Chuyển ảnh RGB sang grayscale thủ công
+        gray = np.dot(resized_image[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+        
+        # Làm phẳng mảng 2D thành 1D
+        flat = gray.flatten()
+        
+        # Mã hóa Run Length Coding
+        rle = []
+        prev = flat[0]
+        count = 1
+        for i in range(1, len(flat)):
+            if flat[i] == prev:
+                count += 1
+            else:
+                rle.append((prev, count))
+                prev = flat[i]
+                count = 1
+        rle.append((prev, count))  # Thêm cặp cuối cùng
+        
+        return rle
+    except Exception as e:
+        print("Error processing the image:", str(e))
+        return None

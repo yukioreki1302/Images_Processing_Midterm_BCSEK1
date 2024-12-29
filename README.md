@@ -28,7 +28,7 @@ BCSEK1- VJU
 
 ## Yêu cầu hệ thống
 
-- **Python 3.12
+- **Python 3.12**
 - **Streamlit**: Để chạy ứng dụng web.
 - **OpenCV**: Để xử lý ảnh.
 - **NumPy**: Để xử lý mảng dữ liệu.

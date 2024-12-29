@@ -134,10 +134,27 @@ def color_transform(image):
     """Phép biến đổi màu (Chuyển từ RGB sang HSV)."""
     return cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
-def run_length_coding(image):
-    """Mã hóa Run Length Coding (RLC)."""
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+def run_length_coding(image, resize_dim=(100, 100)):
+    """
+    Mã hóa Run Length Coding (RLC) với ảnh đầu vào.
+    
+    Parameters:
+        image (numpy.ndarray): Ảnh đầu vào.
+        resize_dim (tuple): Kích thước mới để resize ảnh (width, height).
+        
+    Returns:
+        list: Danh sách các cặp (giá trị pixel, số lần lặp lại).
+    """
+    # Bước 1: Resize ảnh
+    resized_image = cv2.resize(image, resize_dim, interpolation=cv2.INTER_AREA)
+    
+    # Bước 2: Chuyển ảnh sang grayscale
+    gray = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
+    
+    # Bước 3: Làm phẳng mảng 2D thành 1D
     flat = gray.flatten()
+    
+    # Bước 4: Mã hóa Run Length Coding
     rle = []
     prev = flat[0]
     count = 1
@@ -148,5 +165,6 @@ def run_length_coding(image):
             rle.append((prev, count))
             prev = flat[i]
             count = 1
-    rle.append((prev, count))
+    rle.append((prev, count))  # Thêm cặp cuối cùng
+    
     return rle

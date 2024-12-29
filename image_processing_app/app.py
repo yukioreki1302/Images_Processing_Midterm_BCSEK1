@@ -97,7 +97,7 @@ else:
             elif method == "Run Length Coding":
                 encoded = run_length_coding(image) if use_opencv else run_length_coding_manual(image)
                 st.write("Run Length Coding:", encoded)
-
+                   
             # Update progress bar to 100% after processing
             progress_bar.progress(100)
 

@@ -307,10 +307,33 @@ def color_transform_manual(image, transform_type="hsv"):
         raise ValueError("Unsupported transform type")
 
 
-def run_length_coding_manual(image):
-    """Mã hóa Run Length Coding (RLC) không dùng OpenCV."""
-    gray = np.dot(image[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+def run_length_coding_manual(image, resize_dim=(100, 100)):
+    """
+    Mã hóa Run Length Coding (RLC) không dùng OpenCV.
+    
+    Parameters:
+        image (numpy.ndarray): Ảnh đầu vào (RGB hoặc RGBA).
+        resize_dim (tuple): Kích thước mới để resize ảnh (width, height).
+        
+    Returns:
+        list: Danh sách các cặp (giá trị pixel, số lần lặp lại).
+    """
+    # Bước 1: Resize ảnh thủ công
+    height, width = image.shape[:2]
+    resized_image = np.zeros((resize_dim[1], resize_dim[0], 3), dtype=np.uint8)
+    for y in range(resize_dim[1]):
+        for x in range(resize_dim[0]):
+            src_x = int(x * width / resize_dim[0])
+            src_y = int(y * height / resize_dim[1])
+            resized_image[y, x] = image[src_y, src_x, :3]
+    
+    # Bước 2: Chuyển ảnh RGB sang grayscale thủ công
+    gray = np.dot(resized_image[..., :3], [0.2989, 0.5870, 0.1140]).astype(np.uint8)
+    
+    # Bước 3: Làm phẳng mảng 2D thành 1D
     flat = gray.flatten()
+    
+    # Bước 4: Mã hóa Run Length Coding
     rle = []
     prev = flat[0]
     count = 1
@@ -321,6 +344,6 @@ def run_length_coding_manual(image):
             rle.append((prev, count))
             prev = flat[i]
             count = 1
-    rle.append((prev, count))
+    rle.append((prev, count))  # Thêm cặp cuối cùng
+    
     return rle
-

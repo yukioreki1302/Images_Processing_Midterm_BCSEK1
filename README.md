@@ -71,3 +71,6 @@ Xem kết quả:
 Ảnh đã xử lý sẽ được hiển thị trực tiếp trên trang.
 
 Sau khi xử lý xong, bạn có thể tải về ảnh đã xử lý bằng cách nhấn vào nút "Tải về ảnh đã xử lý".
+
+![image](https://github.com/user-attachments/assets/b6cf8a4a-6e73-4d58-bfe8-b71b1fe3ef4d)
+

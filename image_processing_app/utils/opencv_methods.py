@@ -3,45 +3,44 @@ import numpy as np
 
 def smoothing_linear_filter(image):
     """Bộ lọc làm mượt tuyến tính (Linear Smoothing Filter)."""
-    kernel = np.ones((5, 5), np.float32) / 25  # Kernel trung bình
-    filtered_image = cv2.filter2D(image, -1, kernel)
+    kernel = np.ones((5, 5), np.float32) / 25  # Kernel trung bình (hàm kernel có kích thước 5x5)
+    filtered_image = cv2.filter2D(image, -1, kernel)  # Áp dụng bộ lọc cho ảnh đầu vào
     return filtered_image
 
 def median_filter(image):
     """Bộ lọc trung vị (Median Filter)."""
-    filtered_image = cv2.medianBlur(image, 5)
+    filtered_image = cv2.medianBlur(image, 5)  # Áp dụng bộ lọc trung vị với kích thước cửa sổ 5x5
     return filtered_image
 
 def laplacian_filter(image):
     """Bộ lọc Laplace để phát hiện biên ảnh."""
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Chuyển ảnh thành ảnh xám
-    laplacian = cv2.Laplacian(gray_image, cv2.CV_64F)  # Áp dụng Laplace
-    laplacian = cv2.convertScaleAbs(laplacian)  # Chuyển lại kiểu ảnh unsigned int8
+    laplacian = cv2.Laplacian(gray_image, cv2.CV_64F)  # Áp dụng bộ lọc Laplace
+    laplacian = cv2.convertScaleAbs(laplacian)  # Chuyển kiểu dữ liệu ảnh về unsigned int8
     return laplacian
 
 def sharpening(image):
     """Làm sắc nét (Sharpening)."""
-    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])  # Kernel làm sắc nét
-    return cv2.filter2D(image, -1, kernel)
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])  # Kernel làm sắc nét (được định nghĩa dưới dạng ma trận)
+    return cv2.filter2D(image, -1, kernel)  # Áp dụng bộ lọc làm sắc nét cho ảnh
 
 def restore_image_spatial(image):
     """Phục hồi trong trường hợp chỉ có nhiễu - lọc không gian."""
-    return cv2.GaussianBlur(image, (5, 5), 0)
-
+    return cv2.GaussianBlur(image, (5, 5), 0)  # Áp dụng bộ lọc Gaussian để làm mịn ảnh
 
 def otsus_method(image):
     """Phân ngưỡng tự động bằng phương pháp Otsu."""
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, thresholded = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Chuyển ảnh sang ảnh xám
+    _, thresholded = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)  # Phân ngưỡng tự động bằng phương pháp Otsu
     return thresholded
 
 def greylevel_thresholding(image):
-    threshold_value = 128  # Ngưỡng cố định
+    threshold_value = 128  # Ngưỡng cố định (128)
     if len(image.shape) == 3:
-        gray_image = np.dot(image[...,:3], [0.2989, 0.5870, 0.1140])
+        gray_image = np.dot(image[...,:3], [0.2989, 0.5870, 0.1140])  # Chuyển ảnh màu sang xám
     else:
-        gray_image = image
-    binary_image = np.where(gray_image >= threshold_value, 255, 0).astype(np.uint8)
+        gray_image = image  # Nếu ảnh đã là ảnh xám
+    binary_image = np.where(gray_image >= threshold_value, 255, 0).astype(np.uint8)  # Phân ngưỡng với giá trị cố định
     return binary_image
 
 def simple_morphological_erode(image, operation="erode", kernel_size=5, iterations=2):
@@ -116,23 +115,22 @@ def simple_morphological_open(image, operation="open", kernel_size=5, iterations
     else:
         raise ValueError("Invalid morphological operation. Choose from 'dilate', 'erode', 'open', or 'close'.")
 
-
 def greylevel_clustering(image):
     """Greylevel clustering."""
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    k = 2  # Số cụm
-    pixel_values = gray.reshape((-1, 1))
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Chuyển ảnh màu sang ảnh xám
+    k = 2  # Số cụm (clusters)
+    pixel_values = gray.reshape((-1, 1))  # Chuyển ảnh thành một mảng 1 chiều
     pixel_values = np.float32(pixel_values)
 
-    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)  # Điều kiện dừng
     _, labels, centers = cv2.kmeans(pixel_values, k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-    centers = np.uint8(centers)
-    segmented_image = centers[labels.flatten()].reshape(gray.shape)
+    centers = np.uint8(centers)  # Chuyển các giá trị trung tâm về kiểu unsigned int8
+    segmented_image = centers[labels.flatten()].reshape(gray.shape)  # Phân đoạn ảnh
     return segmented_image
 
 def color_transform(image):
     """Phép biến đổi màu (Chuyển từ RGB sang HSV)."""
-    return cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    return cv2.cvtColor(image, cv2.COLOR_BGR2HSV)  # Chuyển đổi màu sắc từ BGR sang HSV
 
 def run_length_coding(image, resize_dim=(100, 100)):
     """
@@ -174,5 +172,5 @@ def run_length_coding(image, resize_dim=(100, 100)):
         
         return rle
     except Exception as e:
-        print(" PProcessing the image:", str(e))
+        print(" Xử lý ảnh gặp lỗi:", str(e))
         return None

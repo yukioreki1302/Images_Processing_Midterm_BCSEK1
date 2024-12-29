@@ -22,11 +22,11 @@
 
 ## Yêu cầu hệ thống
 
-- **Python 3.x**
+- **Python 3.12
 - **Streamlit**: Để chạy ứng dụng web.
 - **OpenCV**: Để xử lý ảnh.
 - **NumPy**: Để xử lý mảng dữ liệu.
-- **Các thư viện bổ trợ khác** như `Pillow`, `Matplotlib`, v.v.
+- **Các thư viện bổ trợ khác** như `Pillow`, , v.v.
 
 ---
 

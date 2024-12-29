@@ -27,7 +27,7 @@ elif method_category == "Morphology":
 elif method_category == "Color Processing":
     methods = ["Greylevel Clustering", "Color Transform"]
 elif method_category == "Compression":
-    methods = [ "Run Length Coding"]
+    methods = ["Run Length Coding"]
 
 method = st.sidebar.selectbox("Choose a method:", methods)
 
@@ -51,7 +51,7 @@ else:
     st.write(f"**Resolution**: {width} x {height} pixels")
 
     # Display the uploaded image
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)  # Updated here
 
     # Create a progress bar for image processing
     progress_bar = st.progress(0)  # Initialize progress bar
@@ -103,7 +103,7 @@ else:
 
             # Display processed image
             if processed_image is not None:
-                st.image(processed_image, caption="Processed Image", use_column_width=True)
+                st.image(processed_image, caption="Processed Image", use_container_width=True)  # Updated here
 
                 # Convert the processed image to a BytesIO object for downloading
                 is_success, buffer = cv2.imencode(".png", processed_image)

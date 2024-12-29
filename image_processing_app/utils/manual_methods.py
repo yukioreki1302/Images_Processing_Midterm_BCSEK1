@@ -355,5 +355,5 @@ def run_length_coding_manual(image, resize_dim=(100, 100)):
         
         return rle
     except Exception as e:
-        print("Error processing the image:", str(e))
+        print(" Processing the image:", str(e))
         return None

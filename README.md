@@ -39,11 +39,13 @@
    https://github.com/yukioreki1302/Images_Processing_Midterm_BCSEK1.git
    cd image_processing_app
 2. **Cài đặt các thư viện yêu cầu: Tạo môi trường ảo (khuyến khích) và cài đặt các thư viện cần thiết**:
+   ```bash
    pip install -r requirements.txt
-3. **Chạy ứng dụng Streamlit**:
+4. **Chạy ứng dụng Streamlit**:
+   ```bash
    streamlit run app.py
 
-   **Hướng dẫn sử dụng**
+**Hướng dẫn sử dụng**
 Tải lên ảnh:
 
 Truy cập vào giao diện của ứng dụng và tải lên một bức ảnh (JPEG, PNG hoặc JPG).

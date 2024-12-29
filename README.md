@@ -52,6 +52,7 @@ BCSEK1- VJU
    streamlit run app.py
 
 **Hướng dẫn sử dụng**
+
 Tải lên ảnh:
 
 Truy cập vào giao diện của ứng dụng và tải lên một bức ảnh (JPEG, PNG hoặc JPG).
@@ -68,4 +69,5 @@ Bạn có thể chọn sử dụng OpenCV để xử lý ảnh tự động, ho�
 Xem kết quả:
 
 Ảnh đã xử lý sẽ được hiển thị trực tiếp trên trang.
+
 Sau khi xử lý xong, bạn có thể tải về ảnh đã xử lý bằng cách nhấn vào nút "Tải về ảnh đã xử lý".

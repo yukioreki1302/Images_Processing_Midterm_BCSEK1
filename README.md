@@ -1,5 +1,7 @@
 # Bộ Công Cụ Xử Lý Ảnh
 
+LINK DEMO: https://image-processing-viet-bcsek1.streamlit.app/ 
+
 **Bộ công cụ Xử lý Ảnh** là một ứng dụng web được xây dựng với **Streamlit** để cung cấp các phương pháp xử lý ảnh cơ bản, từ làm mượt, khôi phục, phân tích đến nén ảnh. Người dùng có thể tải lên hình ảnh và chọn các phương pháp xử lý khác nhau, với tùy chọn sử dụng **OpenCV** hoặc **phương pháp thủ công**.
 
 ## Mục Lục

@@ -77,4 +77,5 @@ Sau khi xử lý xong, bạn có thể tải về ảnh đã xử lý bằng cá
 
 Ấn nút đỏ OpenCV để chuyển giữa dùng Open CV và thuật toán sử dụng toán học 
 
-![image](https://github.com/user-attachments/assets/2dec5c31-873e-4abc-9e51-643ca060739e)
+![image](https://github.com/user-attachments/assets/4de13e78-9a62-4c16-aada-59a4f58fe85c)
+

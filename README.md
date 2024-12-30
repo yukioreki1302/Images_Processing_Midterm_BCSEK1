@@ -61,6 +61,7 @@ Chọn phương pháp xử lý:
 
 Chọn danh mục phương pháp xử lý ảnh từ thanh bên (ví dụ: "Làm Mượt", "Khôi Phục", "Phân Tách", v.v.).
 Chọn phương pháp cụ thể từ các lựa chọn trong mỗi danh mục.
+Tổng cộng có 12 thuật toán và phương pháp được sử dụng để xử lý ảnh .
 
 Tùy chọn sử dụng OpenCV:
 
